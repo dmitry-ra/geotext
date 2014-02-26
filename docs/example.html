@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>lat/lon to string converter</title>
+  <script type="text/javascript" src="../geoprint.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var lat = -34.123;
+    var lon = -3.611;
+
+    var slat = GeoText.lat2str(lat);
+    var slon = GeoText.lon2str(lon);
+
+    document.writeln('lat: ' + lat + ' (' + slat + ')<br>');
+    document.writeln('lon: ' + lon + ' (' + slon + ')<br>');
+
+    var gpt = GeoText.point2str(lat, lon);
+    document.writeln('geopoint: ' + gpt + '<br>');
+    var gpt2 = GeoText.point2str(lat, lon, 945);
+    document.writeln('geopoint2: ' + gpt2 + '<br>');
+    var gpt3 = GeoText.point2str(lat, lon, 945.12, 'ì');
+    document.writeln('geopoint3: ' + gpt3 + '<br>');
+
+</script>
+</body>
+</html>

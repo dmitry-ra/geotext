@@ -18,5 +18,23 @@
         var sec = zeroPad(toFixed(frac * 3600 % 60, 3));
         return deg.concat('°', min, "'", sec, '"', sign);
     };
+    gt.lat2str = function(latitude) {
+        return gt.deg2str(latitude, true);
+    };
+    gt.lon2str = function(longitude) {
+        return gt.deg2str(longitude, false);
+    };
+    gt.point2str = function(latitude, longitude, altitude, altUnitSymbol) {
+        var result = [];
+        if (typeof latitude != 'undefined')
+            result.push(gt.lat2str(latitude));
+        if (typeof longitude != 'undefined')
+            result.push(gt.lon2str(longitude));
+        if (typeof altitude != 'undefined') {
+            var unit = altUnitSymbol || 'm';
+            result.push(altitude.toLocaleString() + unit);
+        }
+        return result.join(' ');
+    };
     return gt;
 }(GeoText || {}));
