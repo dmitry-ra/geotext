@@ -1,27 +1,27 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html>
 <head>
   <title>lat/lon to string converter</title>
   <script type="text/javascript" src="../geoprint.js"></script>
+  <script type="text/javascript" src="../geoparse.js"></script>
 </head>
 <body>
+<form>
+Latitude: <input id="txt-lat" type="text" value="23.123"><br>
+Longitude: <input id="txt-lon" type="text" value="53.824"><br>
+<input id="btn-convert" type="button" value="Convert">
+</form>
+<span id="s1">test</span><br>
+<span id="s2">test2</span>
 <script type="text/javascript">
-    var lat = -34.123;
-    var lon = -3.611;
+    document.getElementById('btn-convert').onclick=function(){
+        var lat = document.getElementById('txt-lat').value;
+        var lon = document.getElementById('txt-lon').value;
+        var str = GeoText.point2str(lat, lon);
 
-    var slat = GeoText.lat2str(lat);
-    var slon = GeoText.lon2str(lon);
-
-    document.writeln('lat: ' + lat + ' (' + slat + ')<br>');
-    document.writeln('lon: ' + lon + ' (' + slon + ')<br>');
-
-    var gpt = GeoText.point2str(lat, lon);
-    document.writeln('geopoint: ' + gpt + '<br>');
-    var gpt2 = GeoText.point2str(lat, lon, 945);
-    document.writeln('geopoint2: ' + gpt2 + '<br>');
-    var gpt3 = GeoText.point2str(lat, lon, 945.12, 'ì');
-    document.writeln('geopoint3: ' + gpt3 + '<br>');
-
+        document.getElementById('s1').innerHTML = str;
+        document.getElementById('s2').innerHTML = JSON.stringify(GeoText.parse(str));
+    }
 </script>
 </body>
 </html>
