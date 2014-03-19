@@ -29,10 +29,13 @@
                 case 'W': result.lon = -v; break;
             }
         }
-
-        //TODO: detect alt (cut off unit symbol)
-        //TODO: return as object with fields lat/lon/alt
-
+        if (parseAltitude) {
+            altitudeUnit = altitudeUnit || 'm';
+            var av = value.match(new RegExp('(\\d+[\\.,\u066B]{0,1}\\d+)\\s*' + altitudeUnit));
+            if (av && av.length > 1) {
+                result.alt = parseFloat(normalize(av[1]));
+            }
+        }
         return result;
     };
     return gt;
