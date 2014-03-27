@@ -1,27 +1,58 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <title>lat/lon to string converter</title>
+  <title>GeoText example</title>
+  <style type="text/css">
+    .form-block label { display: inline-block; width: 90px; text-align: left; }
+    .form-block input { display: inline-block; width: 250px; text-align: left; }
+  </style>
   <script type="text/javascript" src="../geoprint.js"></script>
   <script type="text/javascript" src="../geoparse.js"></script>
 </head>
 <body>
-<form>
-Latitude: <input id="txt-lat" type="text" value="23.123"><br>
-Longitude: <input id="txt-lon" type="text" value="53.824"><br>
-<input id="btn-convert" type="button" value="Convert">
-</form>
-<span id="s1">test</span><br>
-<span id="s2">test2</span>
-<script type="text/javascript">
-    document.getElementById('btn-convert').onclick=function(){
-        var lat = document.getElementById('txt-lat').value;
-        var lon = document.getElementById('txt-lon').value;
-        var str = GeoText.point2str(lat, lon);
-
-        document.getElementById('s1').innerHTML = str;
-        document.getElementById('s2').innerHTML = JSON.stringify(GeoText.parse(str));
-    }
-</script>
+    <h5>To String example</h5>
+    <form action="javascript:void(0);">
+        <div class="form-block">
+            <label>Latitude:</label>
+            <input id="txt-lat" type="text" value="-3.065">
+        </div>
+        <div class="form-block">
+            <label>Longitude:</label>
+            <input id="txt-lon" type="text" value="37.358">
+        </div>
+        <div class="form-block">
+            <label>Altitude:</label>
+            <input id="txt-alt" type="text" value="5895">
+        </div>
+        <button id="btn-convert">To String</button>
+        <br>
+        <code id="to-string-result">&nbsp;</code>
+    </form>
+    <hr>
+    <h5>Parse example</h5>
+    <form action="javascript:void(0);">
+        <div class="form-block">
+            <label>Text:</label>
+            <input id="txt-coord" type="text" value="3&#176;03'54&quot;S 37&#176;21'28.8&quot;E 5895m">
+        </div>
+        <button id="btn-parse">Parse</button>
+        <p>
+            <code id="parse-result">&nbsp;</code>
+        </p>
+    </form>
+    <hr>
+    <script type="text/javascript">
+        document.getElementById('btn-convert').onclick=function(){
+            var lat = document.getElementById('txt-lat').value;
+            var lon = document.getElementById('txt-lon').value;
+            var alt = document.getElementById('txt-alt').value;
+            var str = GeoText.point2str(lat, lon, alt);
+            document.getElementById('to-string-result').innerHTML = str;
+        }
+        document.getElementById('btn-parse').onclick=function(){
+            var text = document.getElementById('txt-coord').value;
+            document.getElementById('parse-result').innerHTML = JSON.stringify(GeoText.parse(text, true));
+        }
+    </script>
 </body>
 </html>
