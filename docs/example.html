@@ -46,6 +46,7 @@
             var lat = document.getElementById('txt-lat').value;
             var lon = document.getElementById('txt-lon').value;
             var alt = document.getElementById('txt-alt').value;
+            if (alt === '') { alt = undefined; }
             var str = GeoText.point2str(lat, lon, alt);
             document.getElementById('to-string-result').innerHTML = str;
         }
