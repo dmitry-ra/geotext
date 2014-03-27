@@ -85,7 +85,7 @@
     }
     document.getElementById('btn-parse').onclick=function(){
         var text = document.getElementById('txt-coord').value;
-        document.getElementById('parse-result').innerHTML = JSON.stringify(GeoText.parse(text, true));
+        document.getElementById('parse-result').innerHTML = JSON.stringify(GeoText.parse(text, true, '(m|ft)'));
     }
 </script>
 
