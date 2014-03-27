@@ -45,12 +45,12 @@
 <!-- Demo -->
 
 <h5>To String example</h5>
-<form action="javascript:void(0);">    
+<form action="javascript:void(0);">
     <div class="form-block">
         <label>Latitude:</label>
         <input id="txt-lat" type="text" value="-3.065">
     </div>
-    <div class="form-block">    
+    <div class="form-block">
         <label>Longitude:</label>
         <input id="txt-lon" type="text" value="37.358">
     </div>
@@ -58,7 +58,7 @@
         <label>Altitude:</label>
         <input id="txt-alt" type="text" value="5895">
     </div>
-    <button id="btn-convert">To String</button>    
+    <button id="btn-convert">To String</button>
     <br>
     <code id="to-string-result" class="form-result">&nbsp;</code>
 </form>
@@ -80,6 +80,7 @@
         var lat = document.getElementById('txt-lat').value;
         var lon = document.getElementById('txt-lon').value;
         var alt = document.getElementById('txt-alt').value;
+        if (alt === '') { alt = undefined; }
         var str = GeoText.point2str(lat, lon, alt);
         document.getElementById('to-string-result').innerHTML = str;
     }
