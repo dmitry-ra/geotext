@@ -1,6 +1,6 @@
 ##Intro
 
-Geotext is a very small JavaScript library for parsing and displaying geographic coordinates according [ISO 6709 Annex D](http://en.wikipedia.org/wiki/ISO_6709 "http://en.wikipedia.org/wiki/ISO_6709").
+Geotext is a very small JavaScript library for parsing and displaying geographic coordinates according to [ISO 6709 Annex D](http://en.wikipedia.org/wiki/ISO_6709 "http://en.wikipedia.org/wiki/ISO_6709").
 
 ##Live demo
 [http://dmitry-ra.github.io/geotext/](http://dmitry-ra.github.io/geotext/)
