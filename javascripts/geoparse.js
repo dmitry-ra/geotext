@@ -6,8 +6,10 @@
         return array.filter(function(x){return typeof x != 'undefined';});
     }
     gt.parse = function(value, parseAltitude, altitudeUnit) {
-        var result = {};
+        var result = { correct: false };
         var coords = value.match(/(\d+\s*\u00B0.*?[NEWS])/gi);
+        if (!coords)
+            return result;
         for (var i = 0; i < coords.length; i++) {
             var coord = normalize(coords[i]);
             var sign = coord.charAt(coord.length - 1).toUpperCase();
@@ -31,11 +33,15 @@
         }
         if (parseAltitude) {
             altitudeUnit = altitudeUnit || 'm';
-            var av = value.match(new RegExp('(\\d+[\\.,\u066B]{0,1}\\d+)\\s*' + altitudeUnit));
-            if (av && av.length > 1) {
+            if (altitudeUnit instanceof Array)
+                altitudeUnit = altitudeUnit.join('|');
+            var av = value.match(new RegExp('(\\d+[\\.,\u066B]{0,1}\\d+)\\s*(' + altitudeUnit + ')'));
+            if (av && av.length > 2) {
                 result.alt = parseFloat(normalize(av[1]));
+                result.unit = av[2];
             }
         }
+        result.correct = true;
         return result;
     };
     return gt;
