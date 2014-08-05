@@ -52,7 +52,11 @@
         }
         document.getElementById('btn-parse').onclick=function(){
             var text = document.getElementById('txt-coord').value;
-            document.getElementById('parse-result').innerHTML = JSON.stringify(GeoText.parse(text, true, '(m|ft)'));
+            document.getElementById('parse-result').innerHTML = JSON.stringify(GeoText.parse(text, true, ['m', 'ft']));
+            // other call variants:
+            // GeoText.parse(text)
+            // GeoText.parse(text, true, 'm')
+            // GeoText.parse(text, true, 'm|ft')
         }
     </script>
 </body>
